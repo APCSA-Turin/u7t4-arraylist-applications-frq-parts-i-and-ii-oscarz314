@@ -14,7 +14,15 @@ public class WordScramble {
    */
   public static String scrambleWord(String word) {
       /* to be implemented in part (a) */
-      return "";
+
+      for (int i = 0; i < word.length() - 1; i++){
+        if ((word.substring(i, i + 1).equals("A") && !(word.substring(i + 1, i + 2).equals("A")))){
+          String temp = word.substring(0, i) + word.substring(i + 1, i + 2) + "A" + word.substring(i + 2);
+          word = temp;
+          i++;
+        }
+      }
+      return word;
   }
 
   /** Modifies wordList by replacing each word with its scrambled
@@ -31,6 +39,13 @@ public class WordScramble {
    */
   public static ArrayList<String> scrambleOrRemove(ArrayList<String> wordList) {
       /* to be implemented in part (b) */
-      return new ArrayList<String>();
+      ArrayList<String> newList = new ArrayList<String>();
+
+      for (int i = 0; i < wordList.size(); i++){
+        if (!(wordList.get(i).equals(scrambleWord(wordList.get(i))))){
+          newList.add(scrambleWord(wordList.get(i)));
+        }
+      }
+      return newList;
   }
 }
